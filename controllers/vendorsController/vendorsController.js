@@ -3,7 +3,7 @@ const express = require("express")
 const {
     getUsers,
     getUser
-} = require("../../queries/users")
+} = require("../../queries/vendors")
 
 const vendors = express.Router()
 

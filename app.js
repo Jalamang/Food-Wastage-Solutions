@@ -4,13 +4,13 @@ const cors = require("cors")
 const app = express()
 
 //controllers
-const usersController = require("./controllers/usersController/usersController")
+const vendorsController = require("./controllers/vendorsController/vendorsController")
 const merchanController = require("./controllers/merchanController/merchanController")
 
-app.use("/vendors", usersController)
+app.use("/vendors", vendorsController)
 app.use("/merchandises", merchanController)
 
-app.get("/", (request, response) =>{
+app.get("/", (_, response) =>{
     response.send("Welcome to Food Waste Solutions")
 })
 
