@@ -10,9 +10,10 @@ CREATE TABLE vendors (
   business_type VARCHAR(50) NOT NULL,
   address VARCHAR(150) NOT NULL,
   phone CHAR(12),
+  photo VARCHAR(255),
   profile VARCHAR CHECK(LENGTH(profile) <= 500),
-  email varchar(255) UNIQUE NOT NULL,
-  password varchar(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
   created_on DATE DEFAULT CURRENT_DATE
 );
 

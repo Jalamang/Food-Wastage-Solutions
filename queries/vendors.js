@@ -7,7 +7,7 @@ getUsers = async (request, response) => {
       console.log(rows)
       return response.status(200).json({
         success: true,
-        users: rows,
+        vendors: rows,
       })
     } catch (error) {
       console.log(error.message)

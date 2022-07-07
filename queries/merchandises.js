@@ -6,7 +6,7 @@ getMerchandises = async (request, response) => {
         const { rows } = await db.query("SELECT * FROM merchandises")
         return response.status(200).json({
             success: true,
-            users: rows,
+            vendors: rows,
           })
     } catch (error) {
         console.log(error.message) 
@@ -28,5 +28,9 @@ getMerchandise = async (request, response) => {
     }
 }
  
+// rgb(22,35,45) background body
+// 16232D
 
+//00BFFE rgb(0,191,254) sign button
+//E8F0F4 rgb(232,240,244) sign in window background-color
 module.exports = {getMerchandises, getMerchandise}
