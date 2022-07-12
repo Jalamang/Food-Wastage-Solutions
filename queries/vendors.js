@@ -1,7 +1,7 @@
 const db = require("../db/dbConfig")
 
 //get all users 
-getUsers = async (request, response) => {
+getVendors = async (request, response) => {
     try {
       const { rows } = await db.query('SELECT * FROM vendors')
       console.log(rows)
@@ -14,8 +14,8 @@ getUsers = async (request, response) => {
     }
   }
 
-  //get a specific user
-  getUser = async (request, response) => {
+  //get a specific vendor
+  getAVendor = async (request, response) => {
     const {uid} = request.params
     try {
       const { rows } = await db.query('SELECT * FROM vendors WHERE vendor_id = $1', [uid])
@@ -28,4 +28,4 @@ getUsers = async (request, response) => {
       console.log(error.message)
     }
   }
-  module.exports = {getUsers, getUser}
+  module.exports = {getVendors, getAVendor}

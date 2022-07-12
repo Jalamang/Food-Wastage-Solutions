@@ -1,15 +1,17 @@
 const express = require("express")
 
 const {
-    getUsers,
-    getUser
+    getVendors,
+    getAVendor
 } = require("../../queries/vendors")
 
-const vendors = express.Router()
+const vendors = express.Router({mergeParams: true})
+const merchandiseController = require("../merchanController/merchanController")
 
+// vendors.use('/:id/merchandises', merchandiseController)
 
-vendors.get("/", getUsers)
-vendors.get("/:uid", getUser)
+vendors.get("/", getVendors)
+vendors.get("/:uid", getAVendor)
 
 
 module.exports = vendors

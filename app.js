@@ -8,8 +8,8 @@ const vendorsController = require("./controllers/vendorsController/vendorsContro
 const merchanController = require("./controllers/merchanController/merchanController")
 
 //body-parser
-app.use(express.json())
 app.use(cors());
+app.use(express.json())
 
 app.use("/vendors", vendorsController)
 app.use("/merchandises", merchanController)
