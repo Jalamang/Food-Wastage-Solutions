@@ -5,7 +5,7 @@ CREATE DATABASE food_solutions;
 
 DROP TABLE IF EXISTS vendors;
 CREATE TABLE vendors (
-  vendor_id INTEGER PRIMARY KEY,
+  vendor_id SERIAL PRIMARY KEY,
   name VARCHAR(55) NOT NULL,
   business_type VARCHAR(50) NOT NULL,
   address VARCHAR(150) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE vendors (
 DROP TABLE IF EXISTS merchandises;
 
 CREATE TABLE merchandises (
-  merchan_id INTEGER PRIMARY KEY,
+  merchan_id SERIAL PRIMARY KEY,
   category VARCHAR(55) NOT NULL,
   address VARCHAR(255) NOT NULL,
   image VARCHAR(255) NOT NULL,

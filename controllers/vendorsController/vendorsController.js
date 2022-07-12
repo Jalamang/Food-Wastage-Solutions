@@ -1,17 +1,19 @@
 const express = require("express")
-
+const vendors = express.Router()
 const {
     getVendors,
-    getAVendor
+    getAVendor,
+    createVendor
 } = require("../../queries/vendors")
 
-const vendors = express.Router({mergeParams: true})
-const merchandiseController = require("../merchanController/merchanController")
+
+// const merchandiseController = require("../merchanController/merchanController")
 
 // vendors.use('/:id/merchandises', merchandiseController)
 
 vendors.get("/", getVendors)
 vendors.get("/:uid", getAVendor)
+vendors.post("/", createVendor)
 
 
 module.exports = vendors

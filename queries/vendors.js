@@ -28,4 +28,24 @@ getVendors = async (request, response) => {
       console.log(error.message)
     }
   }
-  module.exports = {getVendors, getAVendor}
+
+  createVendor = async ( request, response) =>{
+    console.log(request.body)
+    const {name, business_type, address, phone, photo, profile, email, password } = request.body
+   try {
+    await db.query('INSERT INTO vendors(name, business_type, address, phone, photo, profile, email, password ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [name, business_type, address, phone, photo, profile, email, password])
+           return response.status(201).json({
+            success: true,
+            message: 'The post was successful',
+          })
+
+} catch (error) {
+              console.log(error.message)
+          return response.status(500).json({
+            error: error.message,
+          })   
+        }
+
+ }
+
+  module.exports = {getVendors, getAVendor, createVendor}

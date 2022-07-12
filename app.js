@@ -4,8 +4,8 @@ const cors = require("cors")
 const app = express()
 
 //controllers
-const vendorsController = require("./controllers/vendorsController/vendorsController")
 const merchanController = require("./controllers/merchanController/merchanController")
+const vendorsController = require("./controllers/vendorsController/vendorsController")
 
 //body-parser
 app.use(cors());
