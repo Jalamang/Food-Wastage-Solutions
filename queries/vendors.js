@@ -1,5 +1,6 @@
 const db = require("../db/dbConfig")
-
+const {hash } = require("bcryptjs")
+const passport = require("passport")
 //get all users 
 getVendors = async (request, response) => {
     try {
@@ -30,10 +31,10 @@ getVendors = async (request, response) => {
   }
 
   createVendor = async ( request, response) =>{
-    console.log(request.body)
     const {name, business_type, address, phone, photo, profile, email, password } = request.body
+    const hashedPassword = await hash(password, 10)
    try {
-    await db.query('INSERT INTO vendors(name, business_type, address, phone, photo, profile, email, password ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [name, business_type, address, phone, photo, profile, email, password])
+    await db.query('INSERT INTO vendors(name, business_type, address, phone, photo, profile, email, password ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [name, business_type, address, phone, photo, profile, email, hashedPassword])
            return response.status(201).json({
             success: true,
             message: 'The post was successful',
