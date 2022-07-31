@@ -8,7 +8,7 @@ const cookieExtractor = function (req) {
   if(req && req.cookies) token = req.cookies['token']
 return token
 }
-
+SECRET = 'jalamang'
 const opts = {
   secretOrKey: SECRET,
   jwtFromRequest: cookieExtractor,
