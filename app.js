@@ -10,7 +10,7 @@ const merchanController = require("./controllers/merchanController/merchanContro
 const vendorsController = require("./controllers/vendorsController/vendorsController")
 
 //import passport middleware
-require('./middlewares/passport-middleware')
+require('./middleWares/passport-middleware')
 
 //initialize middlewares
 //Cross-Origin Resource Sharing (CORS)
