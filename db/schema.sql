@@ -31,7 +31,7 @@ CREATE TABLE merchandises (
 DROP TABLE IF EXISTS shipment;
 
 CREATE TABLE shipment (
-  shipment_id INTEGER PRIMARY KEY,
+  shipment_id SERIAL PRIMARY KEY,
   date DATE,
   owner_id INTEGER NOT NULL,
   merchandise INTEGER NOT NULL,

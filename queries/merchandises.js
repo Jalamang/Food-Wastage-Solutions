@@ -70,6 +70,45 @@ createMerchandise = async (request, response) => {
     });
   }
 };
+
+updateMerchandise = async (request, response) => {
+  const { uid } = request.params;
+  const { category, address, image, owner_id } = request.body;
+  try {
+    await db.query(
+      "UPDATE merchandises SET category=$1, address=$2, image=$3, owner_id=$4 WHERE merchan_id=$5",
+      [category, address, image, owner_id, uid]
+    );
+    return response.status(200).json({
+      success: true,
+      message: "The product has been updated!",
+    });
+  } catch (error) {
+    response.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+
+deleteProduct = async (request, response) => {
+  const { uid } = request.params;
+  const {merchan_id } = request.body
+  let saveId = new Array(merchan_id)
+
+  try {
+    await db.query("DELETE FROM merchandises WHERE merchan_id=$1", [uid]);
+
+    return response.status(200).json({
+      success: true,
+      message: `The product is successfully removed`,
+    });
+  } catch (error) {
+    response.status(500).json({
+      error: error.message,
+    });
+  }
+};
 // rgb(22,35,45) background body
 // 16232D
 //00BFFE rgb(0,191,254) sign button
@@ -79,4 +118,6 @@ module.exports = {
   getVendorMerchandises,
   getAMerchandise,
   createMerchandise,
+  updateMerchandise,
+  deleteProduct
 };
