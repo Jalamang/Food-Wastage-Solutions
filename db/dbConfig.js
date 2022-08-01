@@ -20,3 +20,5 @@ const { DATABASE_URL, PG_HOST, PG_PORT, PG_DATABASE, PG_USER, PG_PASSWORD } =
 module.exports = {
   query: (text, params) => pool.query(text, params),
 }
+
+

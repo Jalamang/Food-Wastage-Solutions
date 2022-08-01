@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS food_solutions;
-CREATE DATABASE food_solutions;
+DROP DATABASE IF EXISTS d3bn4tjeiihhho;
+CREATE DATABASE d3bn4tjeiihhho;
 
-\c food_solutions;
+\c d3bn4tjeiihhho;
 
 DROP TABLE IF EXISTS vendors;
 CREATE TABLE vendors (
