@@ -3,13 +3,13 @@ const { DATABASE_URL, PG_HOST, PG_PORT, PG_DATABASE, PG_USER, PG_PASSWORD } =
   process.env;
   
   const pool = DATABASE_URL
-  ? {
+  ? new Pool({
       connectionString: DATABASE_URL,
       max: 30,
       ssl: {
         rejectUnauthorized: false,
       },
-    } : new Pool({
+    }) : new Pool({
       user: PG_USER,
       host: PG_HOST,
       database:PG_DATABASE,
