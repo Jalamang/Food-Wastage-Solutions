@@ -53,11 +53,11 @@ getAMerchandise = async (request, response) => {
 //creates a merchandise
 createMerchandise = async (request, response) => {
   console.log(request.body);
-  const { category, address, image, owner_id } = request.body;
+  const { category, address, location, image, owner_id } = request.body;
   try {
     await db.query(
-      "INSERT INTO merchandises(category, address, image, owner_id) VALUES ($1, $2, $3, $4)",
-      [category, address, image, owner_id]
+      "INSERT INTO merchandises(category, address, location, image, owner_id) VALUES ($1, $2, $3, $4,$5)",
+      [category, address, location, image, owner_id]
     );
     return response.status(201).json({
       success: true,
@@ -73,11 +73,11 @@ createMerchandise = async (request, response) => {
 
 updateMerchandise = async (request, response) => {
   const { uid } = request.params;
-  const { category, address, image, owner_id } = request.body;
+  const { category, address,location, image, owner_id } = request.body;
   try {
     await db.query(
-      "UPDATE merchandises SET category=$1, address=$2, image=$3, owner_id=$4 WHERE merchan_id=$5",
-      [category, address, image, owner_id, uid]
+      "UPDATE merchandises SET category=$1, address=$2, location=$3, image=$4, owner_id=$5 WHERE merchan_id=$6",
+      [category, address, location, image, owner_id, uid]
     );
     return response.status(200).json({
       success: true,

@@ -6,9 +6,11 @@ const { SECRET } = require('../constants')
 
 //get all users
 getVendors = async (request, response) => {
+  const {vendor_id} = request.body
+  
   try {
     const { rows } = await db.query("SELECT * FROM vendors");
-    console.log(rows);
+    console.log(rows)
     return response.status(200).json({
       success: true,
       vendors: rows,
@@ -47,10 +49,8 @@ createVendor = async (request, response) => {
     email,
     password,
   } = request.body;
-  // const validatedNumber = await formatPhoneNumber(phone)
+
   const hashedPassword = await hash(password, 10);
- 
-  // if(!validatedNumber) return response.json({error:"Phone number not valid!"})
   try {
     await db.query(
       "INSERT INTO vendors(name, business_type, address, phone, photo, profile, email, password ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
@@ -89,6 +89,7 @@ updateVendor = async (request, response) => {
     email,
     password,
   } = request.body;
+  const hashedPassword = await hash(password, 10);
   try {
     await db.query(
       "UPDATE vendors SET name=$1, business_type=$2, address=$3, phone=$4, photo=$5, profile=$6, email=$7, password=$8 WHERE vendor_id=$9",
@@ -100,7 +101,7 @@ updateVendor = async (request, response) => {
         photo,
         profile,
         email,
-        password,
+        hashedPassword,
         uid,
       ]
     );
@@ -140,7 +141,7 @@ login = async (request, response) => {
   try {
     const token = await sign(payload, SECRET)
 
-    return response.status(200).cookie('token', token, { httpOnly: true }).json({
+    return response.status(200).cookie('token', token, { httpOnly: true, }).json({
       success: true,
       message: 'Logged in successfully',
     })
