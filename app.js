@@ -28,4 +28,11 @@ app.get("/", (_, response) =>{
     response.send(welcomingMessage)
 })
 
+app.get('*', (_, response) =>{
+response.status(404).json({error: 
+    {success: false,
+    message: "Invalid route"}
+})
+})
+
 module.exports = app

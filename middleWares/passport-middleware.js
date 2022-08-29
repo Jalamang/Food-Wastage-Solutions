@@ -5,10 +5,12 @@ const db = require('../db/dbConfig')
 
 const cookieExtractor = function (req) {
   let token = null
-  if(req && req.cookies) token = req.cookies['token']
-return token
+  if(req && req.cookies) {
+    token = req.cookies['token']
+    return token
+  }
 }
-SECRET = 'jalamang'
+
 const opts = {
   secretOrKey: SECRET,
   jwtFromRequest: cookieExtractor,

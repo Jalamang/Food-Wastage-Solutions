@@ -16,6 +16,7 @@ CREATE TABLE vendors (
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
   created_on DATE DEFAULT CURRENT_DATE
+
 );
 ALTER SEQUENCE vendors_vendor_id_seq RESTART WITH 90100;
 
@@ -28,11 +29,21 @@ CREATE TABLE merchandises (
   address VARCHAR(255) NOT NULL,
   location VARCHAR(255) NOT NULL,
   image VARCHAR(255) NOT NULL,
-  owner_id INTEGER NOT NULL,
+  owner_id INTEGER NOT NULL,  
   FOREIGN KEY (owner_id) REFERENCES vendors(vendor_id)
 );
 
 ALTER SEQUENCE merchandises_merchan_id_seq RESTART WITH 70100;
+concat("VEN", merchandises_merchan_id_seq)
+
+CREATE TABLE REVIEWS (
+  review_id SERIAL PRIMARY key,
+  user_review INT NOT NULL,
+  merchan_id INT NOT NULL,
+  owner_id INT NOT NULL,
+  FOREIGN KEY (merchan_id) REFERENCES merchandises(merchan_id),
+  FOREIGN KEY (owner_id) REFERENCES vendors(vendor_id)
+)
 
 
 DROP TABLE IF EXISTS shipment;
