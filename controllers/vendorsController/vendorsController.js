@@ -8,7 +8,7 @@ const {
     deleteVendor,
     login,
     logout,
-    protected
+    protectedRoute
 } = require("../../queries/vendors")
 const { registerValidation, loginValidation}= require("../../validate/userValidation")
 const {validationMiddleware} = require("../../validate/validation-middleWare")
@@ -18,7 +18,7 @@ const { userAuth } = require("../../middleWares/auth-middleware")
 // vendors.use('/:id/merchandises', merchandiseController)
 
 vendors.get("/", getVendors)
-vendors.get("/protected",userAuth, protected)
+vendors.get("/protected",userAuth, protectedRoute)
 vendors.get("/:uid", getAVendor)
 vendors.post("/create", registerValidation, validationMiddleware, createVendor)
 vendors.post("/login", loginValidation, validationMiddleware, login)

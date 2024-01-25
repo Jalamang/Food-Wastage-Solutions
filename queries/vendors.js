@@ -5,18 +5,24 @@ const { SECRET } = require('../constants')
 // const {formatPhoneNumber} = require("../controllers/vendorsController/validate")
 
 //get all users
+
+// import jwt_decode from "jwt-decode";
+
+
+
+
 getVendors = async (request, response) => {
-  const {vendor_id} = request.body
-  
   try {
     const { rows } = await db.query("SELECT * FROM vendors");
-    console.log(rows)
+  
     return response.status(200).json({
       success: true,
       vendors: rows,
     });
   } catch (error) {
-    console.log(error.message);
+    return response.status(500).json({
+      error: error.message,
+    })
   }
 };
 
@@ -34,7 +40,9 @@ getAVendor = async (request, response) => {
       users: rows,
     });
   } catch (error) {
-    console.log(error.message);
+    return response.status(500).json({
+      error: error.message,
+    })
   }
 };
 
@@ -65,12 +73,18 @@ createVendor = async (request, response) => {
         hashedPassword,
       ]
     );
+
+    // decode token
+    // const token = hashedPassword;
+    // const decoded = jwt_decode(token);
+    // console.log(decoded);
+
     return response.status(201).json({
       success: true,
       message: "The post was successful",
     });
   } catch (error) {
-    console.log(error.message);
+    
     return response.status(500).json({
       error: error.message,
     });
@@ -131,12 +145,13 @@ deleteVendor = async (request, response) => {
 
 login = async (request, response) => {
   let user = request.user
-  console.log(user)
+ 
 
   let payload = {
     id: user.vendor_id,
     email: user.email,
   }
+
 
   try {
     const token = await sign(payload, SECRET)
@@ -146,7 +161,7 @@ login = async (request, response) => {
       message: 'Logged in successfully',
     })
   } catch (error) {
-    console.log(error.message)
+    
     return response.status(500).json({
       error: error.message,
     })
@@ -160,7 +175,7 @@ logout = async (_, response) => {
       message: 'Logged out successfully',
     })
   } catch (error) {
-    console.log(error.message)
+    
     return response.status(500).json({
       error: error.message,
     })
@@ -168,13 +183,15 @@ logout = async (_, response) => {
 }
 
 
-protected = async (_, response) => {
+protectedRoute = async (_, response) => {
   try {
      response.status(200).json({
       info: 'protected info',
     })
   } catch (error) {
-    console.log(error.message)
+    return response.status(500).json({
+      error: error.message,
+    })
   }
 }
 
@@ -186,5 +203,5 @@ module.exports = {
   deleteVendor,
   login,
   logout,
-  protected
+  protectedRoute
 };

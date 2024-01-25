@@ -4,11 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
     "db:init": "psql -f db/schema.sql",
-    "db:seed": "psql -f db/seed.sql"
+    "db:seed": "psql -f db/seed.sql",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +27,8 @@
     "passport-local": "^1.0.0",
     "pg": "^8.7.1",
     "pg-promise": "^10.11.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
   }
 }

@@ -1,4 +1,5 @@
-const app = require("./app.js")
+const app = require("./index.js")
+
 
 const PORT = process.env.PORT || 5000
 

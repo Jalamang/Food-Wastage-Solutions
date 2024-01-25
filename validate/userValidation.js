@@ -17,7 +17,7 @@ const emailExists = check('email').custom(async (value) => {
   const { rows } = await db.query('SELECT * from vendors WHERE email = $1', [
     value,
   ])
-  console.log(rows)
+ 
   if (rows.length) {
     throw new Error('Email already exists.')
   }
@@ -26,7 +26,7 @@ const emailExists = check('email').custom(async (value) => {
 //login validation
 const loginFieldsCheck = check('email').custom(async (value, {req} ) => {
   const user = await db.query('SELECT * from vendors WHERE email = $1', [value])
-console.log(user.rows)
+
   if (!user.rows.length) {
     throw new Error('Email does not exists.')
   }
